@@ -1,0 +1,40 @@
+
+    if (showCreateRoomDialog) {
+        AlertDialog(
+            onDismissRequest = { showCreateRoomDialog = false },
+            title = { Text("Create Chat Room") },
+            text = {
+                Column {
+                    OutlinedTextField(
+                        value = newRoomName,
+                        onValueChange = { newRoomName = it },
+                        label = { Text("Room Name") },
+                        singleLine = true
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text("Your Account Level: ${userProfile.migLevel}", fontSize = 12.sp, color = Color.Gray)
+                    Text("Room Max Capacity: $maxRoomCapacity Users", fontSize = 12.sp, color = Color.Gray)
+                    Text("(Calculated based on your level)", fontSize = 11.sp, color = Color.Gray)
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (newRoomName.isNotBlank()) {
+                            repository.createRoom(newRoomName, "What's Hot", maxRoomCapacity, userProfile.username)
+                            showCreateRoomDialog = false
+                            newRoomName = ""
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF8C00))
+                ) {
+                    Text("Create")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showCreateRoomDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }

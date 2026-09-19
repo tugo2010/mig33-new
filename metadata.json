@@ -1,0 +1,6 @@
+{
+  "name": "mig33",
+  "description": "Classic mig33 social messaging experience with live chat rooms, customizable anime avatars, virtual gifts, points system, and nostalgic UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
